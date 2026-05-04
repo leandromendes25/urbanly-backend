@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: urbanly
+  datasource:
+    url: jdbc:postgresql://localhost:5432/urbanly_db
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # use validate ou none em produção
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  sql:
+    init:
+      mode: always
