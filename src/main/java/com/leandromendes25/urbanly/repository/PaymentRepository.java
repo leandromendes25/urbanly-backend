@@ -1,4 +1,7 @@
 package com.leandromendes25.urbanly.repository;
 
-public interface Payment {
+import com.leandromendes25.urbanly.entity.Payment;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PaymentRepository extends JpaRepository<Payment, Long> {
 }

@@ -16,20 +16,22 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode
-public class Order {
+public class Purchase {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
-    private String sessionId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     private String status;
     private BigDecimal totalAmount;
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<OrderItem> items;
+    @OneToMany(mappedBy = "purchase", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PurchaseItem> items;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "purchase", cascade = CascadeType.ALL)
     private Payment payment;
 }

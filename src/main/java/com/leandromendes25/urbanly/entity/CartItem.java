@@ -1,4 +1,23 @@
 package com.leandromendes25.urbanly.entity;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
+@EqualsAndHashCode
 public class CartItem {
+    @Id
+    @GeneratedValue (strategy = GenerationType.SEQUENCE)
+    private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
+    private Integer quantity;
 }

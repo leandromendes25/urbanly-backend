@@ -18,3 +18,5 @@ spring:
   sql:
     init:
       mode: always
+secret:
+  key: "dGVzdGFkbm8tcGFyYS1zZWNyZXQta2V5LTM0Ng=="
