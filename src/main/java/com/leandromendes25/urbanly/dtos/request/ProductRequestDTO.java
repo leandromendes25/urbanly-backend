@@ -1,4 +1,6 @@
 package com.leandromendes25.urbanly.dtos.request;
 
-public record ProductRequestDTO() {
+import java.math.BigDecimal;
+
+public record ProductRequestDTO(String name, String description, BigDecimal price, String imageUrl, int stock) {
 }
