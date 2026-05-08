@@ -23,7 +23,7 @@ public class Purchase {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Client client;
     private String status;
     private BigDecimal totalAmount;
     @CreationTimestamp

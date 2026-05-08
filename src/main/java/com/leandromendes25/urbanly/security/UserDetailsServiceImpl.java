@@ -1,7 +1,7 @@
 package com.leandromendes25.urbanly.security;
 
-import com.leandromendes25.urbanly.entity.User;
-import com.leandromendes25.urbanly.repository.UserRepository;
+import com.leandromendes25.urbanly.entity.Client;
+import com.leandromendes25.urbanly.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,13 +13,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     // Repositório para acessar dados de usuário no banco de dados
     @Autowired
-    private UserRepository userRepository;
+    private ClientRepository clientRepository;
 
     // Implementação do método para carregar detalhes do usuário pelo e-mail
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         // Busca o usuário no banco de dados pelo e-mail
-        User usuario = userRepository.findByEmail(email)
+        Client usuario = clientRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + email));
 
         // Cria e retorna um objeto UserDetails com base no usuário encontrado
