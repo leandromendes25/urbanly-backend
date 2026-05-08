@@ -27,5 +27,5 @@ public class Review {
     private LocalDateTime createdAt;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Client client;
 }

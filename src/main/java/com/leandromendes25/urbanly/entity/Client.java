@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.jspecify.annotations.Nullable;
@@ -20,12 +22,16 @@ import java.util.List;
 @EqualsAndHashCode
 @Builder
 @Data
-public class User implements UserDetails {
+public class Client implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
     private String name;
+    @Email
+    @NotNull
     private String email;
+    @NotNull
     private String password;
     @CreationTimestamp
     private LocalDateTime createdAt;

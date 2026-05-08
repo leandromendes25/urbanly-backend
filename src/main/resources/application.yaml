@@ -19,4 +19,4 @@ spring:
     init:
       mode: always
 secret:
-  key: "dGVzdGFkbm8tcGFyYS1zZWNyZXQta2V5LTM0Ng=="
+  key: "bG9yZW0gbG9yZW0gYXNoeWFoc2FiYyBhb3NqYW9zamFvLWl0aWFqc2lhanNhLW1zYW9za2Fvc2EtMWE="
