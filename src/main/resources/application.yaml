@@ -1,6 +1,7 @@
 spring:
   application:
     name: urbanly
+
   datasource:
     url: jdbc:postgresql://localhost:5432/urbanly_db
     username: admin
@@ -8,9 +9,13 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
     hibernate:
-      ddl-auto: update  # use validate ou none em produção
+      ddl-auto: update
+
     show-sql: true
+
     properties:
       hibernate:
         format_sql: true
@@ -18,5 +23,6 @@ spring:
   sql:
     init:
       mode: always
+
 secret:
   key: "bG9yZW0gbG9yZW0gYXNoeWFoc2FiYyBhb3NqYW9zamFvLWl0aWFqc2lhanNhLW1zYW9za2Fvc2EtMWE="
