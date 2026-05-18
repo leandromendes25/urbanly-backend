@@ -21,7 +21,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "client_id")
     private Client client;
     @CreationTimestamp
     private LocalDateTime createdAt;
