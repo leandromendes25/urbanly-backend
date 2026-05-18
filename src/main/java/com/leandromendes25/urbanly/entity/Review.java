@@ -1,6 +1,8 @@
 package com.leandromendes25.urbanly.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -21,6 +23,8 @@ public class Review {
     @JoinColumn(name = "product_id")
     private Product product;
     private String reviewerName;
+    @Min(1)
+    @Max(5)
     private Integer ratings;
     private String comments;
     @CreationTimestamp

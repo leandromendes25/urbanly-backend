@@ -41,12 +41,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"/client/login").permitAll() // Permite acesso ao endpoint de login sem autenticação
                         .requestMatchers(HttpMethod.POST, "/client").permitAll()
-                        .requestMatchers("/product/**").permitAll()
+                        .requestMatchers("/product/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/product/*/review").permitAll()
                         .anyRequest().authenticated() // Requer autenticação para todas as outras requisições
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Configura a política de sessão como stateless (sem sessão)
-                )
+                ) 
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class); // Adiciona o filtro JWT antes do filtro de autenticação padrão
 
         // Retorna a configuração do filtro de segurança construída
