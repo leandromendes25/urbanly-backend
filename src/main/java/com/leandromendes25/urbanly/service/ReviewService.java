@@ -39,7 +39,7 @@ public class ReviewService {
         public List<ReviewResponseDTO> listAllReviews(){
         return ReviewMapper.listOfReviewsOfProduct(reviewRepository.findAll());
     }
-        public void deleteReview(Long reviewId, String token) throws UnathorizedException {
+        public void deleteReview(Long reviewId) throws UnathorizedException {
             String email = SecurityContextHolder.getContext().getAuthentication().getName();
             Review review = reviewRepository.findById(reviewId).orElseThrow(() -> new ResourceNotFoundException("Review não encontrada"));
             if (!review.getClient().getEmail().equals(email)){

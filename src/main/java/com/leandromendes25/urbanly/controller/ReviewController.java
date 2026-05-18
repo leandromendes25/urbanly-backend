@@ -29,8 +29,8 @@ public class ReviewController {
         return ResponseEntity.ok().body(reviewService.listAllReviews());
     }
     @DeleteMapping("{reviewId}")
-    public ResponseEntity<Void> deleteReview(@PathVariable Long reviewId, @RequestHeader("Authorization") String token) throws UnathorizedException {
-        reviewService.deleteReview(reviewId, token);
+    public ResponseEntity<Void> deleteReview(@PathVariable Long reviewId) throws UnathorizedException {
+        reviewService.deleteReview(reviewId);
         return ResponseEntity.noContent().build();
     }
 }
