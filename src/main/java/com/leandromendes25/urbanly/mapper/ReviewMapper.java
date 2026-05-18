@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ReviewMapper {
     public static Review toEntity(ReviewRequestDTO dto, Product product, Client client){
-        return Review.builder().product(product).client(client).ratings(dto.ratings()).comments(dto.comments()).build();
+        return Review.builder().product(product).client(client).reviewerName(client.getName()).ratings(dto.ratings()).comments(dto.comments()).build();
     }
     public static ReviewResponseDTO toReviewResponseDTO(Review review) {
 

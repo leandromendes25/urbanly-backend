@@ -22,7 +22,7 @@ public class Purchase {
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "client_id")
     private Client client;
     private String status;
     private BigDecimal totalAmount;
