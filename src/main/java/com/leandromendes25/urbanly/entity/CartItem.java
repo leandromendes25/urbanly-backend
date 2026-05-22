@@ -3,6 +3,8 @@ package com.leandromendes25.urbanly.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +22,9 @@ public class CartItem {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
     private Integer quantity;
+    private BigDecimal priceAtMoment;
+
+    public BigDecimal getTotalPrice(){
+        return priceAtMoment.multiply(BigDecimal.valueOf(quantity));
+    }
 }
