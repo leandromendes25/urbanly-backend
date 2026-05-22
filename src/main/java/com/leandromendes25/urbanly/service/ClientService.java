@@ -3,10 +3,12 @@ package com.leandromendes25.urbanly.service;
 import com.leandromendes25.urbanly.dtos.request.Login;
 import com.leandromendes25.urbanly.dtos.request.ClientRequestDTO;
 import com.leandromendes25.urbanly.dtos.response.ClientResponseDTO;
+import com.leandromendes25.urbanly.entity.Cart;
 import com.leandromendes25.urbanly.exceptions.ConflictException;
 import com.leandromendes25.urbanly.exceptions.ResourceNotFoundException;
 import com.leandromendes25.urbanly.exceptions.UnathorizedException;
 import com.leandromendes25.urbanly.mapper.ClientMapper;
+import com.leandromendes25.urbanly.repository.CartRepository;
 import com.leandromendes25.urbanly.repository.ClientRepository;
 import com.leandromendes25.urbanly.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -26,15 +28,18 @@ public class ClientService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
+    private final CartRepository cartRepository;
 
     public ClientResponseDTO createClient(ClientRequestDTO clientRequestDTO){
         if (clientRepository.findByEmail(clientRequestDTO.email().toLowerCase()).isPresent()) {
             throw new ConflictException("Email já cadastrado");
         }
-        String encryptedPassowrd = passwordEncoder.encode(clientRequestDTO.password());
+    String encryptedPassowrd = passwordEncoder.encode(clientRequestDTO.password());
     ClientRequestDTO encryptedDto = new ClientRequestDTO(clientRequestDTO.name(), clientRequestDTO.email(),encryptedPassowrd);
-    var user = clientRepository.save(ClientMapper.toEntity(encryptedDto ));
-    return ClientMapper.toClientResponse(user);
+    var client = clientRepository.save(ClientMapper.toEntity(encryptedDto ));
+        Cart cart = Cart.builder().client(client).build();
+        cartRepository.save(cart);
+    return ClientMapper.toClientResponse(client);
 }
 
     public String autenticateClient(Login login) throws UnathorizedException {
