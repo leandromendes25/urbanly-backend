@@ -2,8 +2,8 @@ package com.leandromendes25.urbanly.exceptions;
 
 import javax.naming.AuthenticationException;
 
-public class UnathorizedException extends AuthenticationException {
-    public UnathorizedException(String message) {
+public class UnauthorizedException extends AuthenticationException {
+    public UnauthorizedException(String message) {
         super(message);
     }
 }

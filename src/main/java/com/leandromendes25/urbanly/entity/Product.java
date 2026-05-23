@@ -29,6 +29,8 @@ public class Product {
     private String imageUrl;
     @NotNull(message = "Quantidade não pode ser nulo")
     private Integer stock;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Seller seller;
     @CreationTimestamp
     private LocalDateTime createdAt;
 }

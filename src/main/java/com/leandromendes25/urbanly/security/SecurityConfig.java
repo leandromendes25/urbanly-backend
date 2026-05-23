@@ -41,7 +41,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"/client/login").permitAll() // Permite acesso ao endpoint de login sem autenticação
                         .requestMatchers(HttpMethod.POST, "/client").permitAll()
-                        .requestMatchers("/product/*").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/seller").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/seller/login").permitAll()
+
                         .requestMatchers(HttpMethod.GET, "/product/*/review").permitAll()
                         .anyRequest().authenticated() // Requer autenticação para todas as outras requisições
                 )
