@@ -2,14 +2,11 @@ package com.leandromendes25.urbanly.controller;
 
 import com.leandromendes25.urbanly.dtos.request.ReviewRequestDTO;
 import com.leandromendes25.urbanly.dtos.response.ReviewResponseDTO;
-import com.leandromendes25.urbanly.exceptions.UnathorizedException;
+import com.leandromendes25.urbanly.exceptions.UnauthorizedException;
 import com.leandromendes25.urbanly.service.ReviewService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +26,7 @@ public class ReviewController {
         return ResponseEntity.ok().body(reviewService.listAllReviews());
     }
     @DeleteMapping("{reviewId}")
-    public ResponseEntity<Void> deleteReview(@PathVariable Long reviewId) throws UnathorizedException {
+    public ResponseEntity<Void> deleteReview(@PathVariable Long reviewId) throws UnauthorizedException {
         reviewService.deleteReview(reviewId);
         return ResponseEntity.noContent().build();
     }

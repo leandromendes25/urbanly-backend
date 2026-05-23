@@ -6,15 +6,13 @@ import com.leandromendes25.urbanly.entity.Client;
 import com.leandromendes25.urbanly.entity.Product;
 import com.leandromendes25.urbanly.entity.Review;
 import com.leandromendes25.urbanly.exceptions.ResourceNotFoundException;
-import com.leandromendes25.urbanly.exceptions.UnathorizedException;
+import com.leandromendes25.urbanly.exceptions.UnauthorizedException;
 import com.leandromendes25.urbanly.mapper.ReviewMapper;
 import com.leandromendes25.urbanly.repository.ClientRepository;
 import com.leandromendes25.urbanly.repository.ProductRepository;
 import com.leandromendes25.urbanly.repository.ReviewRepository;
-import com.leandromendes25.urbanly.security.JwtUtil;
 import com.leandromendes25.urbanly.security.SecurityUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,11 +37,11 @@ public class ReviewService {
         public List<ReviewResponseDTO> listAllReviews(){
         return ReviewMapper.listOfReviewsOfProduct(reviewRepository.findAll());
     }
-        public void deleteReview(Long reviewId) throws UnathorizedException {
+        public void deleteReview(Long reviewId) throws UnauthorizedException {
             String email = SecurityUtils.getEmailFromContext();
             Review review = reviewRepository.findById(reviewId).orElseThrow(() -> new ResourceNotFoundException("Review não encontrada"));
             if (!review.getClient().getEmail().equals(email)){
-                throw new UnathorizedException("Usuário não tem permissão para deletar review");
+                throw new UnauthorizedException("Usuário não tem permissão para deletar review");
             }
             reviewRepository.deleteById(reviewId);
         }

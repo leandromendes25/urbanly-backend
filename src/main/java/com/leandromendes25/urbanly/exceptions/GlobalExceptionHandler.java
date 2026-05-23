@@ -15,8 +15,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleConflictException(ConflictException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
-    @ExceptionHandler(UnathorizedException.class)
-    public ResponseEntity<String> handleAuthenticationException(UnathorizedException ex){
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<String> handleAuthenticationException(UnauthorizedException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 }
