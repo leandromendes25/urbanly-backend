@@ -3,7 +3,7 @@ package com.leandromendes25.urbanly.controller;
 import com.leandromendes25.urbanly.dtos.request.Login;
 import com.leandromendes25.urbanly.dtos.request.ClientRequestDTO;
 import com.leandromendes25.urbanly.dtos.response.ClientResponseDTO;
-import com.leandromendes25.urbanly.exceptions.UnathorizedException;
+import com.leandromendes25.urbanly.exceptions.UnauthorizedException;
 import com.leandromendes25.urbanly.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class ClientController {
         return ResponseEntity.ok(clientService.createClient(clientRequestDTO));
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Login login) throws UnathorizedException {
+    public ResponseEntity<String> login(@RequestBody Login login) throws UnauthorizedException {
         return ResponseEntity.ok(clientService.autenticateClient(login));
     }
     @GetMapping
