@@ -26,7 +26,7 @@ public class SellerController {
         return ResponseEntity.ok(sellerService.autenticateSeller(login));
     }
     @GetMapping
-    public ResponseEntity<SellerResponseDTO> findClientByEmail(@RequestParam("email") String email){
+    public ResponseEntity<SellerResponseDTO> findSellerByEmail(@RequestParam("email") String email){
         return ResponseEntity.ok(sellerService.searchSellerByEmail(email));
     }
     @DeleteMapping("/{email}")

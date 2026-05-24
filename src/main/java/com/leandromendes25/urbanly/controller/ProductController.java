@@ -2,6 +2,7 @@ package com.leandromendes25.urbanly.controller;
 
 import com.leandromendes25.urbanly.dtos.request.ProductRequestDTO;
 import com.leandromendes25.urbanly.dtos.response.ProductResponseDTO;
+import com.leandromendes25.urbanly.exceptions.UnauthorizedException;
 import com.leandromendes25.urbanly.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO dto){
+    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO dto) throws UnauthorizedException {
     return ResponseEntity.ok().body(productService.generateProduct(dto));
 }
     @GetMapping
@@ -30,7 +31,7 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.updateProduct(dto, id));
     }
 @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable UUID id){
+    public ResponseEntity<Void> deleteProduct(@PathVariable UUID id) throws UnauthorizedException {
         productService.removeProduct(id);
         return ResponseEntity.noContent().build();
 }
