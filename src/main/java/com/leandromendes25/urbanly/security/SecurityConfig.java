@@ -45,6 +45,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/seller/login").permitAll()
 
                         .requestMatchers(HttpMethod.GET, "/product/*/review").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/product").permitAll()
                         .anyRequest().authenticated() // Requer autenticação para todas as outras requisições
                 )
                 .sessionManagement(session -> session

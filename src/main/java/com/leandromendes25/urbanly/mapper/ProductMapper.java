@@ -2,6 +2,7 @@ package com.leandromendes25.urbanly.mapper;
 
 import com.leandromendes25.urbanly.dtos.request.ProductRequestDTO;
 import com.leandromendes25.urbanly.dtos.response.ProductResponseDTO;
+import com.leandromendes25.urbanly.dtos.response.SellerResponseDTO;
 import com.leandromendes25.urbanly.entity.Product;
 
 import java.util.ArrayList;
@@ -14,8 +15,9 @@ public class ProductMapper {
                 .build();
     }
     public static ProductResponseDTO toProductResponseDTO(Product product){
+        SellerResponseDTO seller = SellerMapper.toSellerResponse(product.getSeller());
         return new ProductResponseDTO(product.getId(),product.getName(), product.getDescription(),
-                product.getPrice(),product.getImageUrl(),product.getStock(), product.getCreatedAt());
+                product.getPrice(),product.getImageUrl(),product.getStock(),seller, product.getCreatedAt());
     }
     public static List<ProductResponseDTO> toListOfProductResponseDTO(List<Product> listOfProduct){
          return listOfProduct.stream().map(ProductMapper::toProductResponseDTO).toList();

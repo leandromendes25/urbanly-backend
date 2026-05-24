@@ -5,5 +5,5 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record ProductResponseDTO(UUID id, String name, String description, BigDecimal price, String imageUrl,
-                                 int stock, LocalDateTime createdAt) {
+                                 int stock, SellerResponseDTO seller, LocalDateTime createdAt) {
 }
