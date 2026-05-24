@@ -17,10 +17,10 @@ public class CartService {
     private final CartRepository cartRepository;
     private final ClientRepository clientRepository;
 
-    public CartResponseDTO getCart(){
-        String email = SecurityUtils.getEmailFromContext();
-        Client client = clientRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Email não encontrado"));
-        Cart cart = cartRepository.findByClient(client).orElseThrow(() -> new ResourceNotFoundException("Carrinho não encontrado"));
-
-    }
+//    public CartResponseDTO getCart(){
+//        String email = SecurityUtils.getEmailFromContext();
+//        Client client = clientRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Email não encontrado"));
+//        Cart cart = cartRepository.findByClient(client).orElseThrow(() -> new ResourceNotFoundException("Carrinho não encontrado"));
+//
+//    }
 }
