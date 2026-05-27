@@ -11,20 +11,21 @@ import java.math.BigDecimal;
 @Builder
 @Data
 @EqualsAndHashCode
-public class CartItem {
-    @Id
-    @GeneratedValue (strategy = GenerationType.SEQUENCE)
-    private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
-    private Integer quantity;
-    private BigDecimal priceAtMoment;
+    public class CartItem {
+     //CartItem serve para armazenar informações customizadas do produto, nesse caso para quantidade e preço no momento
+        @Id
+        @GeneratedValue (strategy = GenerationType.SEQUENCE)
+        private Long id;
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "cart_id")
+        private Cart cart;
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "product_id", nullable = false)
+        private Product product;
+        private Integer quantity;
+        private BigDecimal priceAtMoment;
 
-    public BigDecimal getTotalPrice(){
-        return priceAtMoment.multiply(BigDecimal.valueOf(quantity));
-    }
+        public BigDecimal getTotalPrice(){
+            return priceAtMoment.multiply(BigDecimal.valueOf(quantity));
+        }
 }

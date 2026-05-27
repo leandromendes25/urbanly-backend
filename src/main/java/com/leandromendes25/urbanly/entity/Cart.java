@@ -1,10 +1,7 @@
 package com.leandromendes25.urbanly.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Data
 @Builder
 public class Cart {
     @Id
@@ -38,6 +36,7 @@ public class Cart {
 
     public void removeItem(CartItem item){
         items.remove(item);
+        //vai estar removendo o item do carrinho
         item.setCart(null);
     }
     public BigDecimal getTotalPrice(){
