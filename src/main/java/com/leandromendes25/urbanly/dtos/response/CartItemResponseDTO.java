@@ -4,5 +4,5 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public record CartItemResponseDTO(Long id, UUID productId, String productName, String imageUrl,
-                                  BigDecimal price, Integer quantity) {
+                                  BigDecimal priceAtMoment, Integer quantity, BigDecimal totalPrice) {
 }
