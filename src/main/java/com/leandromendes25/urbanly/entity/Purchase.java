@@ -1,10 +1,8 @@
 package com.leandromendes25.urbanly.entity;
 
+import com.leandromendes25.urbanly.entity.enums.PurchaseStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
@@ -16,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode
+@Data
 public class Purchase {
 
     @Id
@@ -24,7 +23,8 @@ public class Purchase {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private PurchaseStatus status;
     private BigDecimal totalAmount;
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -32,6 +32,10 @@ public class Purchase {
     @OneToMany(mappedBy = "purchase", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PurchaseItem> items;
 
-    @OneToOne(mappedBy = "purchase", cascade = CascadeType.ALL)
-    private Payment payment;
+    public BigDecimal getTotalAmount(){
+
+        return items.stream()
+                .map(PurchaseItem::getTotalPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 }
