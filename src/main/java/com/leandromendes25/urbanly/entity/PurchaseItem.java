@@ -29,4 +29,8 @@ public class PurchaseItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
+
+    public BigDecimal getTotalPrice(){
+       return BigDecimal.valueOf(quantity);
+    }
 }
